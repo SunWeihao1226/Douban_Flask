@@ -5,14 +5,18 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def index():
-    return render_template("index.html")
+def indexCh():
+    return render_template("index-ch.html")
 
-@app.route('/index')
+@app.route('/index-ch')
 def home():
-    return index()
+    return indexCh()
 
-@app.route('/movie')
+@app.route('/index-en')
+def home_en():
+    return render_template("index-en.html")
+
+@app.route('/movie-ch')
 def movie():
     datalist = []
     con = sqlite3.connect("movie.db")
@@ -23,9 +27,22 @@ def movie():
         datalist.append(item)
     cur.close()
     con.close()
-    return render_template("movie.html", movies = datalist)
+    return render_template("movie-ch.html", movies = datalist)
 
-@app.route('/score')
+@app.route('/movie-en')
+def movie_en():
+    datalist = []
+    con = sqlite3.connect("movie.db")
+    cur = con.cursor()
+    sql = "select * from movie250"
+    data = cur.execute(sql)
+    for item in data:
+        datalist.append(item)
+    cur.close()
+    con.close()
+    return render_template("movie-en.html", movies = datalist)
+
+@app.route('/score-ch')
 def score():
     scoreList = []
     numberList = []
@@ -38,16 +55,30 @@ def score():
         numberList.append(item[1])
     cur.close()
     con.close()
-    return render_template("score.html", scoreList = scoreList, numberList = numberList)
+    return render_template("score-ch.html", scoreList = scoreList, numberList = numberList)
 
-@app.route('/word')
+@app.route('/score-en')
+def score_en():
+    scoreList = []
+    numberList = []
+    con = sqlite3.connect("movie.db")
+    cur = con.cursor()
+    sql = "select score, count (score) from movie250 group by score"
+    data = cur.execute(sql)
+    for item in data:
+        scoreList.append(item[0])
+        numberList.append(item[1])
+    cur.close()
+    con.close()
+    return render_template("score-en.html", scoreList = scoreList, numberList = numberList)
+
+@app.route('/word-ch')
 def word():
-    return render_template("word.html")
+    return render_template("word-ch.html")
 
-@app.route('/team')
-def team():
-    return render_template("team.html")
-
+@app.route('/word-en')
+def word_en():
+    return render_template("word-en.html")
 
 
 if __name__ == '__main__':
