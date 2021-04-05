@@ -27,7 +27,7 @@ def movie():
         datalist.append(item)
     cur.close()
     con.close()
-    return render_template("movie-ch.html", movies = datalist)
+    return render_template("Douban_Flask/movie-ch.html", movies = datalist)
 
 @app.route('/movie-en')
 def movie_en():
