@@ -27,9 +27,9 @@ def movie():
         datalist.append(item)
     cur.close()
     con.close()
-    return render_template("Douban_Flask/movie-ch.html", movies = datalist)
+    return render_template("movie-ch.html", movies = datalist)
 
-@app.route('/movie-en')
+@app.route('/Douban_Flask/movie-en.html')
 def movie_en():
     datalist = []
     con = sqlite3.connect("movie.db")
