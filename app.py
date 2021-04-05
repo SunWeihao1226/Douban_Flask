@@ -16,7 +16,7 @@ def home():
 def home_en():
     return render_template("index-en.html")
 
-@app.route('/movie-ch')
+@app.route('/Douban_Flask/movie-ch')
 def movie():
     datalist = []
     con = sqlite3.connect("movie.db")
@@ -42,7 +42,7 @@ def movie_en():
     con.close()
     return render_template("movie-en.html", movies = datalist)
 
-@app.route('/score-ch')
+@app.route('/Douban_Flask/score-ch')
 def score():
     scoreList = []
     numberList = []
@@ -57,7 +57,7 @@ def score():
     con.close()
     return render_template("score-ch.html", scoreList = scoreList, numberList = numberList)
 
-@app.route('/score-en')
+@app.route('/Douban_Flask/score-en')
 def score_en():
     scoreList = []
     numberList = []
@@ -72,11 +72,11 @@ def score_en():
     con.close()
     return render_template("score-en.html", scoreList = scoreList, numberList = numberList)
 
-@app.route('/word-ch')
+@app.route('/Douban_Flask/word-ch')
 def word():
     return render_template("word-ch.html")
 
-@app.route('/word-en')
+@app.route('/Douban_Flask/word-en')
 def word_en():
     return render_template("word-en.html")
 
